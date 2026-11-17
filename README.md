@@ -74,6 +74,7 @@ To use the NAS's own Avahi for Bonjour instead of the server's built-in responde
 | `8484/tcp` | The settings page and the apps. |
 | `PUID`, `PGID` | The user and group the server runs as (1000 unless set). |
 | `PELLU_NAME` | The name the Pellu apps show. |
+| `PELLU_ADMIN_PASSWORD` | The settings page's password, at least 8 characters (1.0.1 and newer). Used on the first start only, instead of the setup code in the log; change it later in the page. `PELLU_ADMIN_PASSWORD_FILE` reads it from a file and deletes the file. |
 | `PELLU_ADVERTISE_ADDRESS` | Addresses sent to your account (`ip` or `ip:port`, comma-separated), for a bridge network. |
 | `PELLU_PORT` | Another port instead of 8484. |
 | `PELLU_SCAN_MINUTES` | A full scan every so many minutes (at least 15; 0: only at start and on demand). |
@@ -84,6 +85,12 @@ To use the NAS's own Avahi for Bonjour instead of the server's built-in responde
 
 What's set in the environment is shown in the settings page but can't be changed there. Everything
 else is set in the page.
+
+## Unraid
+
+`templates/pellu-home.xml` is the Unraid template (Community Applications), with this repository's
+`icon.png` and `ca_profile.xml`. To add it by hand: in the Docker tab, Template repositories, add
+`https://github.com/yonikrispil/pellu-home`, then Add Container and pick `pellu-home`.
 
 ## Updating
 

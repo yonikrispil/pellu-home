@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>pellu-home</Name>
+  <Repository>ghcr.io/yonikrispil/pellu-home:latest</Repository>
+  <Registry>https://github.com/yonikrispil/pellu-home/pkgs/container/pellu-home</Registry>
+  <Network>host</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://pellu.co/support</Support>
+  <Project>https://pellu.co/home-server/linux</Project>
+  <ReadMe>https://github.com/yonikrispil/pellu-home#readme</ReadMe>
+  <Overview>Pellu Home Server shares the videos (and their subtitles) in the folders you choose with the Pellu apps on your phones, tablets and TV at home. Files play as they are: nothing is transcoded, and nothing is uploaded.&#xD;
+&#xD;
+Choose the WebUI's password here, then open the WebUI (http://your-server:8484/admin) and sign in with it. (Left empty, the WebUI asks for the setup code from the container's log, a line like "enter the setup code ABCD-EFGH", and then for a password.) Then pick your folders from /media and link the server to your free Pellu account.&#xD;
+&#xD;
+Host networking lets the Pellu apps find the server by themselves (Bonjour) and puts its real address in your account. Media is mounted read-only.</Overview>
+  <Category>MediaServer:Video MediaServer:Other</Category>
+  <ExtraSearchTerms>pellu home server media iptv subtitles bonjour</ExtraSearchTerms>
+  <WebUI>http://[IP]:[PORT:8484]/admin</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/yonikrispil/pellu-home/main/templates/pellu-home.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/yonikrispil/pellu-home/main/icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>A free Pellu account, to link the server to.</Requires>
+  <Date>2026-11-17</Date>
+  <Changes>
+### 2026-11-17
+- 1.0.1: the WebUI's password can be chosen in the template, instead of the setup code from the log.
+- First release.
+  </Changes>
+  <License>Proprietary</License>
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/pellu-home" Mode="rw" Description="The server's settings, kept between updates." Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/pellu-home</Config>
+  <Config Name="Media" Target="/media/Media" Default="" Mode="ro" Description="A media share, such as /mnt/user/media. More folders: add a path for each, inside /media (for example /media/Shows), read-only." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="WebUI password" Target="PELLU_ADMIN_PASSWORD" Default="" Mode="" Description="The password for the WebUI, at least 8 characters. Used on the first start only: change it later in the WebUI. Empty: the WebUI asks for the setup code from the container's log." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Server name" Target="PELLU_NAME" Default="" Mode="" Description="Optional: the name the Pellu apps show. Empty: the server's own name, which can then be changed in the WebUI (a name set here can't be)." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="The user the server runs as; it needs to read the media (99 is nobody)." Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="The group the server runs as (100 is users)." Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+  <Config Name="WebUI port" Target="8484" Default="8484" Mode="tcp" Description="The settings page and the Pellu apps. Used only on a bridge network; with host networking the server listens on 8484." Type="Port" Display="advanced" Required="false" Mask="false">8484</Config>
+  <Config Name="Address for the apps" Target="PELLU_ADVERTISE_ADDRESS" Default="" Mode="" Description="Only on a bridge network: the server's address at home with the port, such as 192.168.1.50:8484, so the Pellu apps can reach it. Leave it empty with host networking." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+</Container>

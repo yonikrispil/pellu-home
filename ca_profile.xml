@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>Pellu Home Server, from the makers of Pellu: it shares the videos and subtitles in your Unraid shares with the Pellu apps on your phones, tablets and TV at home, as they are, with no transcoding. Set it up in your browser at http://your-server:8484/admin. Guide: https://pellu.co/home-server/linux</Profile>
+  <Icon>https://raw.githubusercontent.com/yonikrispil/pellu-home/main/icon.png</Icon>
+  <WebPage>https://pellu.co/home-server/linux</WebPage>
+</CommunityApplications>
