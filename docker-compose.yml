@@ -1,0 +1,14 @@
+services:
+  pellu-home:
+    image: ghcr.io/yonikrispil/pellu-home:latest
+    container_name: pellu-home
+    network_mode: host                    # Bonjour, and the real address in your account
+    environment:
+      - PUID=1000                         # the user and group that own your media
+      - PGID=1000
+      - PELLU_NAME=Living room NAS        # the name the apps show
+      - TZ=Etc/UTC                        # your time zone
+    volumes:
+      - ./config:/config                  # settings, kept between updates
+      - /path/to/media:/media/video:ro    # your media folder, read-only
+    restart: unless-stopped
