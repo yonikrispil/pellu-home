@@ -92,6 +92,13 @@ else is set in the page.
 `icon.png` and `ca_profile.xml`. To add it by hand: in the Docker tab, Template repositories, add
 `https://github.com/yonikrispil/pellu-home`, then Add Container and pick `pellu-home`.
 
+## TerraMaster
+
+The TOS 7 packages (`pellu-home_x86_64.deb`, `pellu-home_aarch64.deb`, each with its `.sha256`) are in
+this repository's [Releases](https://github.com/yonikrispil/pellu-home/releases), where TerraMaster's
+App Center picks them up. After install, the setup code for the settings page is in the `public`
+shared folder, in `Pellu Home Server setup code.txt`, until a password is chosen.
+
 ## Updating
 
 ```sh
@@ -103,3 +110,8 @@ The settings in `/config` are kept.
 ## Help
 
 Questions or problems: choose Support in your account at https://pellu.co.
+
+## License
+
+The files in this repository are under the MIT license (`LICENSE`). Pellu Home Server itself, the
+software in the image, is free to use and proprietary.
