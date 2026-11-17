@@ -113,5 +113,7 @@ Questions or problems: choose Support in your account at https://pellu.co.
 
 ## License
 
-The files in this repository are under the MIT license (`LICENSE`). Pellu Home Server itself, the
-software in the image, is free to use and proprietary.
+The files in this repository (the Unraid template, `ca_profile.xml`, `docker-compose.yml`, this
+README and `icon.png`) are under the MIT license (`LICENSE`). Pellu Home Server itself, the
+software in the image and in the Release packages, is free to use and proprietary: the MIT license
+does not cover it.

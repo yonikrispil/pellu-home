@@ -2,10 +2,6 @@ MIT License
 
 Copyright (c) 2026 Pellu
 
-This license covers the files in this repository: the Unraid template, ca_profile.xml,
-docker-compose.yml, README.md and icon.png. It does not cover Pellu Home Server itself, the
-software in the image ghcr.io/yonikrispil/pellu-home, which is free to use and proprietary.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
