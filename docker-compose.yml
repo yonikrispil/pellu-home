@@ -11,4 +11,6 @@ services:
     volumes:
       - ./config:/config                  # settings, kept between updates
       - /path/to/media:/media/video:ro    # your media folder, read-only
+      - /path/to/from-devices:/media/from-devices   # videos sent from phones and tablets (writable;
+                                          # outside the media folder above), optional
     restart: unless-stopped

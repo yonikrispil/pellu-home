@@ -1,8 +1,9 @@
 # Pellu Home Server for Linux and NAS
 
 Pellu Home Server shares the videos in the folders you choose with the Pellu apps on your phones,
-tablets and TV at home. Files play as they are: nothing is converted, and nothing is uploaded to
-Pellu. You set it up from a settings page in your browser.
+tablets and TV at home. Files play as they are, or converted smaller on this computer when an app
+asks (away from home, on a slow connection); nothing is uploaded to Pellu. You set it up from a
+settings page in your browser.
 
 This repository holds this README and an example `docker-compose.yml` for the container image
 `ghcr.io/yonikrispil/pellu-home`. The full guide, with steps for each NAS, is at
@@ -48,6 +49,18 @@ network as your devices, and a free Pellu account.
 More folders? Add a line for each under `volumes`, inside `/media`, for example
 `/volume1/shows:/media/shows:ro`.
 
+### Videos sent from phones and tablets
+
+The Pellu apps can send a video from a phone or tablet to the server, which saves it as a file of
+its own in a folder you choose (each device gets a folder inside it). The media stays read-only, so
+the server saves only in a folder mapped for writing:
+
+1. Keep the `/media/from-devices` line in `docker-compose.yml`, with a folder on the NAS that isn't
+   inside a media folder you mapped (or its videos would show twice). If the folder isn't there, it's
+   made, and the server gives it to `PUID:PGID`; an existing one has to be writable by them.
+2. In the settings page, under Media, turn on **Let phones and tablets send videos to this server**
+   and choose `/media/from-devices`.
+
 ### Without host networking
 
 Some systems don't allow `network_mode: host`. Then publish the port and give the server its
@@ -62,6 +75,10 @@ address on your home network, or your devices won't reach it:
 
 Bonjour doesn't work this way, so the apps find the server through your account.
 
+For watching away from home (remote access, off by default), also publish `"8443:8443"` and
+forward port 8443 to the NAS on your router: from a bridge network the server can't ask the router
+to open it, so the settings page shows the router as refusing.
+
 To use the NAS's own Avahi for Bonjour instead of the server's built-in responder, also mount
 `/run/dbus/system_bus_socket:/run/dbus/system_bus_socket`.
 
@@ -71,7 +88,9 @@ To use the NAS's own Avahi for Bonjour instead of the server's built-in responde
 |---|---|
 | `/config` | The settings (`settings.json`). Keep it on a volume. |
 | `/media` | Your media folders, mounted read-only. Folders are picked in the settings page from under here. |
+| `/media/from-devices` | Optional, writable: where videos sent from phones and tablets are saved. |
 | `8484/tcp` | The settings page and the apps. |
+| `8443/tcp` | Watching away from home (TLS only), when remote access is on in the page. Off by default. |
 | `PUID`, `PGID` | The user and group the server runs as (1000 unless set). |
 | `PELLU_NAME` | The name the Pellu apps show. |
 | `PELLU_ADMIN_PASSWORD` | The settings page's password, at least 8 characters (1.0.1 and newer). Used on the first start only, instead of the setup code in the log; change it later in the page. `PELLU_ADMIN_PASSWORD_FILE` reads it from a file and deletes the file. |
